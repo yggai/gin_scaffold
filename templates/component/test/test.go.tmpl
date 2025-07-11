@@ -1,0 +1,114 @@
+package tests
+
+import (
+	"encoding/json"
+	"net/http"
+	"net/http/httptest"
+	"strings"
+	"testing"
+	
+	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
+	
+	"{{.Package}}/controllers"
+)
+
+func Test{{.Name}}CRUD(t *testing.T) {
+	// 设置测试模式
+	gin.SetMode(gin.TestMode)
+	
+	// 创建测试路由器
+	router := gin.New()
+	
+	// 创建控制器
+	controller := controllers.New{{.Name}}Controller()
+	
+	// 注册路由
+	group := router.Group("/api/{{.ResourceName}}")
+	{
+		group.GET("", controller.Get{{.PluralName}})
+		group.GET("/:id", controller.Get{{.Name}})
+		group.POST("", controller.Create{{.Name}})
+		group.PUT("/:id", controller.Update{{.Name}})
+		group.DELETE("/:id", controller.Delete{{.Name}})
+	}
+	
+	// 测试获取列表
+	t.Run("Get{{.PluralName}}", func(t *testing.T) {
+		w := httptest.NewRecorder()
+		req, _ := http.NewRequest("GET", "/api/{{.ResourceName}}", nil)
+		router.ServeHTTP(w, req)
+		
+		assert.Equal(t, http.StatusOK, w.Code)
+		
+		var response map[string]interface{}
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
+		assert.Contains(t, response, "message")
+	})
+	
+	// 测试创建
+	t.Run("Create{{.Name}}", func(t *testing.T) {
+		w := httptest.NewRecorder()
+		reqBody := `{"name":"Test{{.Name}}"}`
+		req, _ := http.NewRequest("POST", "/api/{{.ResourceName}}", strings.NewReader(reqBody))
+		req.Header.Set("Content-Type", "application/json")
+		router.ServeHTTP(w, req)
+		
+		assert.Equal(t, http.StatusCreated, w.Code)
+		
+		var response map[string]interface{}
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
+		assert.Contains(t, response, "message")
+		assert.Contains(t, response, "data")
+	})
+	
+	// 测试获取单个
+	t.Run("Get{{.Name}}", func(t *testing.T) {
+		w := httptest.NewRecorder()
+		req, _ := http.NewRequest("GET", "/api/{{.ResourceName}}/1", nil)
+		router.ServeHTTP(w, req)
+		
+		assert.Equal(t, http.StatusOK, w.Code)
+		
+		var response map[string]interface{}
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
+		assert.Contains(t, response, "message")
+		assert.Contains(t, response, "id")
+	})
+	
+	// 测试更新
+	t.Run("Update{{.Name}}", func(t *testing.T) {
+		w := httptest.NewRecorder()
+		reqBody := `{"name":"Updated{{.Name}}"}`
+		req, _ := http.NewRequest("PUT", "/api/{{.ResourceName}}/1", strings.NewReader(reqBody))
+		req.Header.Set("Content-Type", "application/json")
+		router.ServeHTTP(w, req)
+		
+		assert.Equal(t, http.StatusOK, w.Code)
+		
+		var response map[string]interface{}
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
+		assert.Contains(t, response, "message")
+		assert.Contains(t, response, "id")
+		assert.Contains(t, response, "data")
+	})
+	
+	// 测试删除
+	t.Run("Delete{{.Name}}", func(t *testing.T) {
+		w := httptest.NewRecorder()
+		req, _ := http.NewRequest("DELETE", "/api/{{.ResourceName}}/1", nil)
+		router.ServeHTTP(w, req)
+		
+		assert.Equal(t, http.StatusOK, w.Code)
+		
+		var response map[string]interface{}
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
+		assert.Contains(t, response, "message")
+		assert.Contains(t, response, "id")
+	})
+} 

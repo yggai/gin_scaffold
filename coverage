@@ -1,0 +1,25 @@
+mode: set
+github.com/yggai/gs/pkg/utils/utils.go:11.39,14.2 2 1
+github.com/yggai/gs/pkg/utils/utils.go:17.38,18.52 1 1
+github.com/yggai/gs/pkg/utils/utils.go:18.52,20.3 1 1
+github.com/yggai/gs/pkg/utils/utils.go:21.2,21.12 1 1
+github.com/yggai/gs/pkg/utils/utils.go:25.39,27.26 1 1
+github.com/yggai/gs/pkg/utils/utils.go:27.26,29.3 1 1
+github.com/yggai/gs/pkg/utils/utils.go:32.2,33.16 2 1
+github.com/yggai/gs/pkg/utils/utils.go:33.16,35.3 1 0
+github.com/yggai/gs/pkg/utils/utils.go:37.2,37.6 1 1
+github.com/yggai/gs/pkg/utils/utils.go:37.6,39.54 1 1
+github.com/yggai/gs/pkg/utils/utils.go:39.54,41.4 1 1
+github.com/yggai/gs/pkg/utils/utils.go:44.3,45.30 2 1
+github.com/yggai/gs/pkg/utils/utils.go:45.30,47.9 1 0
+github.com/yggai/gs/pkg/utils/utils.go:49.3,49.25 1 1
+github.com/yggai/gs/pkg/utils/utils.go:52.2,52.81 1 0
+github.com/yggai/gs/pkg/utils/utils.go:56.39,59.28 2 1
+github.com/yggai/gs/pkg/utils/utils.go:59.28,63.18 1 1
+github.com/yggai/gs/pkg/utils/utils.go:63.18,65.4 1 1
+github.com/yggai/gs/pkg/utils/utils.go:65.9,65.55 1 1
+github.com/yggai/gs/pkg/utils/utils.go:65.55,67.4 1 1
+github.com/yggai/gs/pkg/utils/utils.go:71.2,71.61 1 1
+github.com/yggai/gs/pkg/utils/utils.go:71.61,73.3 1 1
+github.com/yggai/gs/pkg/utils/utils.go:75.2,75.15 1 1
+github.com/yggai/gs/pkg/utils/utils.go:79.44,81.2 1 1

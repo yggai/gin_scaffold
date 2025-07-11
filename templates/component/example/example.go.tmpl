@@ -1,0 +1,44 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"{{.Package}}/controllers"
+)
+
+// {{.Name}} 示例代码
+// 本示例演示如何使用{{.Name}}控制器处理HTTP请求
+func main() {
+	// 创建一个Gin路由器
+	r := gin.Default()
+	
+	// 创建控制器
+	controller := controllers.New{{.Name}}Controller()
+	
+	// 注册路由
+	group := r.Group("/api/{{.ResourceName}}")
+	{
+		group.GET("", controller.Get{{.PluralName}})
+		group.GET("/:id", controller.Get{{.Name}})
+		group.POST("", controller.Create{{.Name}})
+		group.PUT("/:id", controller.Update{{.Name}})
+		group.DELETE("/:id", controller.Delete{{.Name}})
+	}
+	
+	// 启动服务器
+	fmt.Println("服务器启动在 :8080 端口...")
+	fmt.Println("")
+	fmt.Println("可用的API端点:")
+	fmt.Println("GET    /api/{{.ResourceName}}      - 获取所有{{.PluralName}}")
+	fmt.Println("GET    /api/{{.ResourceName}}/:id  - 获取单个{{.Name}}")
+	fmt.Println("POST   /api/{{.ResourceName}}      - 创建新的{{.Name}}")
+	fmt.Println("PUT    /api/{{.ResourceName}}/:id  - 更新{{.Name}}")
+	fmt.Println("DELETE /api/{{.ResourceName}}/:id  - 删除{{.Name}}")
+	
+	if err := r.Run(":8080"); err != nil {
+		log.Fatalf("服务器启动失败: %v", err)
+	}
+} 

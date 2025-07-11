@@ -1,0 +1,20 @@
+package routes
+
+import (
+	"github.com/gin-gonic/gin"
+	"{{.Package}}/controllers"
+)
+
+// Register{{.Name}}Routes 注册{{.Name}}相关路由
+func Register{{.Name}}Routes(router *gin.Engine) {
+	controller := controllers.New{{.Name}}Controller()
+	
+	group := router.Group("/api/{{.ResourceName}}")
+	{
+		group.GET("", controller.Get{{.PluralName}})
+		group.GET("/:id", controller.Get{{.Name}})
+		group.POST("", controller.Create{{.Name}})
+		group.PUT("/:id", controller.Update{{.Name}})
+		group.DELETE("/:id", controller.Delete{{.Name}})
+	}
+} 

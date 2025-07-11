@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/gin-gonic/gin"
+	"{{.PackageName}}/config"
+	"{{.PackageName}}/routes"
+)
+
+func main() {
+	// 加载配置
+	cfg, err := config.Load()
+	if err != nil {
+		log.Fatalf("无法加载配置: %v", err)
+	}
+
+	// 创建Gin引擎
+	r := gin.Default()
+
+	// 注册路由
+	routes.RegisterRoutes(r)
+
+	// 启动服务器
+	addr := fmt.Sprintf(":%d", cfg.Server.Port)
+	fmt.Printf("服务器启动在 %s 端口...\n", addr)
+	if err := r.Run(addr); err != nil {
+		log.Fatalf("服务器启动失败: %v", err)
+	}
+} 

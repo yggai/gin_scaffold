@@ -1,0 +1,49 @@
+package services
+
+import (
+	"{{.Package}}/models"
+)
+
+// {{.Name}}Service 提供{{.Name}}相关的业务逻辑
+type {{.Name}}Service struct {
+	// TODO: 添加依赖
+}
+
+// New{{.Name}}Service 创建一个新的{{.Name}}服务
+func New{{.Name}}Service() *{{.Name}}Service {
+	return &{{.Name}}Service{
+		// TODO: 初始化依赖
+	}
+}
+
+// GetAll 获取所有{{.Name}}
+func (s *{{.Name}}Service) GetAll() ([]models.{{.Name}}, error) {
+	// TODO: 实现获取所有记录的逻辑
+	return []models.{{.Name}}{}, nil
+}
+
+// GetByID 通过ID获取{{.Name}}
+func (s *{{.Name}}Service) GetByID(id uint) (*models.{{.Name}}, error) {
+	// TODO: 实现通过ID获取记录的逻辑
+	return &models.{{.Name}}{
+		ID: id,
+	}, nil
+}
+
+// Create 创建新的{{.Name}}
+func (s *{{.Name}}Service) Create({{.VarName}} *models.{{.Name}}) error {
+	// TODO: 实现创建记录的逻辑
+	return nil
+}
+
+// Update 更新{{.Name}}
+func (s *{{.Name}}Service) Update(id uint, {{.VarName}} *models.{{.Name}}) error {
+	// TODO: 实现更新记录的逻辑
+	return nil
+}
+
+// Delete 删除{{.Name}}
+func (s *{{.Name}}Service) Delete(id uint) error {
+	// TODO: 实现删除记录的逻辑
+	return nil
+} 

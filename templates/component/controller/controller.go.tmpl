@@ -1,0 +1,89 @@
+package controllers
+
+import (
+	"net/http"
+	
+	"github.com/gin-gonic/gin"
+)
+
+// {{.Name}}Controller 处理{{.Name}}相关的HTTP请求
+type {{.Name}}Controller struct {
+	// TODO: 添加依赖注入
+}
+
+// New{{.Name}}Controller 创建一个新的{{.Name}}控制器
+func New{{.Name}}Controller() *{{.Name}}Controller {
+	return &{{.Name}}Controller{
+		// TODO: 初始化依赖
+	}
+}
+
+// Get{{.PluralName}} 获取所有{{.PluralName}}
+func (c *{{.Name}}Controller) Get{{.PluralName}}(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "获取所有{{.PluralName}}",
+	})
+}
+
+// Get{{.Name}} 通过ID获取单个{{.Name}}
+func (c *{{.Name}}Controller) Get{{.Name}}(ctx *gin.Context) {
+	id := ctx.Param("id")
+	
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "获取单个{{.Name}}",
+		"id":      id,
+	})
+}
+
+// Create{{.Name}} 创建新的{{.Name}}
+func (c *{{.Name}}Controller) Create{{.Name}}(ctx *gin.Context) {
+	var request struct {
+		// TODO: 定义请求结构
+		Name string `json:"name"`
+	}
+	
+	if err := ctx.ShouldBindJSON(&request); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	
+	ctx.JSON(http.StatusCreated, gin.H{
+		"message": "创建{{.Name}}",
+		"data":    request,
+	})
+}
+
+// Update{{.Name}} 更新{{.Name}}
+func (c *{{.Name}}Controller) Update{{.Name}}(ctx *gin.Context) {
+	id := ctx.Param("id")
+	
+	var request struct {
+		// TODO: 定义请求结构
+		Name string `json:"name"`
+	}
+	
+	if err := ctx.ShouldBindJSON(&request); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "更新{{.Name}}",
+		"id":      id,
+		"data":    request,
+	})
+}
+
+// Delete{{.Name}} 删除{{.Name}}
+func (c *{{.Name}}Controller) Delete{{.Name}}(ctx *gin.Context) {
+	id := ctx.Param("id")
+	
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "删除{{.Name}}",
+		"id":      id,
+	})
+} 
